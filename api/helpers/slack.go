@@ -1,10 +1,13 @@
 package helpers
 
 import (
+	"strings"
+
 	"github.com/slack-go/slack"
 )
 
 func FormatText(txt string) string {
+	txt = strings.Trim(txt, " ")
 	return "*" + txt + "*"
 }
 

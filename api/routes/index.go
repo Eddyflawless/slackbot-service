@@ -22,7 +22,6 @@ func SetUpRoutes() *gin.Engine {
 
 	{
 		g1.GET("/slack", ctr.SendSlackMessage)
-		g1.GET("/telegram", ctr.SendTelegramMessage)
 	}
 
 	router.GET("/health", func(c *gin.Context) {
