@@ -16,12 +16,20 @@ func SetUpRoutes() *gin.Engine {
 
 	v1 := router.Group("/v1")
 
-	router.Use(mw.Jwt())
+	router.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"msg": "Healthy",
+		})
+	})
+
+	router.Use(mw.Authenticate())
 
 	g1 := v1.Group("/messages")
 
 	{
-		g1.GET("/slack", ctr.SendSlackMessage)
+		g1.POST("/", ctr.GetMessages)
+		g1.POST("/process", ctr.ProcessMessages)
+		g1.POST("/slack", ctr.SendSlackMessage)
 	}
 
 	router.GET("/health", func(c *gin.Context) {
