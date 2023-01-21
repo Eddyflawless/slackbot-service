@@ -38,6 +38,7 @@ func startApp() {
 
 func main() {
 
+	// workers
 	startApp()
 
 }
